@@ -41,18 +41,19 @@ public class PaletteActivity extends AppCompatActivity {
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position!=0) {
-                    /*Intent intent = new Intent(PaletteActivity.this, CanvasActivity.class);
-                    intent.putExtra("color", englishColors[position].toString());
-                    startActivity(intent);
-*/
-
+                    CanvasFragment canvasFragment = new CanvasFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("color",englishColors[position].toString());
+                    canvasFragment.setArguments(bundle);
                     FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.add(R.id.activity_main_layout,CanvasFragment.newInstance(englishColors[position].toString()));
+                    fragmentTransaction.add(R.id.fragmentLayout,canvasFragment);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
+
                 }
             }
 
